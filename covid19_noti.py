@@ -21,7 +21,7 @@ if __name__ == "__main__":
         soup = BeautifulSoup(html_doc, 'html.parser') #Parsing The Data
         mystr = ""
 
-        for tr in soup.find_all ('tbody')[7].find_all('tr'):
+        for tr in soup.find_all ('tbody')[9].find_all('tr'):
             mystr += tr.get_text() #Converting the Parsed Data to a String 
             
         
@@ -29,7 +29,13 @@ if __name__ == "__main__":
         mystr = mystr[1:]
         
         
-        myList = (mystr.split("\n\n")) 
+        
+        
+        myList = (mystr.split("\n")) 
+        #print(myList)
+        
+       
+        
         
         
         
@@ -38,19 +44,21 @@ if __name__ == "__main__":
 
         
         states = ['Delhi','Uttar Pradesh', 'Maharashtra',] # Enter Your State Name Here (Dont Enter More Than 5 States)
-        for item in myList[0:23]:
-            dataList = (item.split('\n'))
-            print(dataList)
+        length=len(myList)
+        for item in  range (length):
+            #dataList = (item.split('\n'))
+            #print(dataList)
             
-            
-            
-            
-            if dataList[1] in states:
-                
-                
+
+            if myList[item] in states:
                 notify_title= 'Cases of Covid-19 In India'
-                notify_text= f" State: {dataList[1]}\n Indian Cases : {dataList[2]} & Foreign Cases : {dataList[3]}\n Cured : {dataList[4]}\n Deaths : {dataList[5]}"
+                notify_text= f" State: {myList[item]}\n Indian Cases : {myList[item+1]} \n Cured : {myList[item+3]}\n Deaths : {myList[item+4]}"
                 notifyMe(notify_title, notify_text)
                 time.sleep(2)
-        time.sleep(3600) #Loop For 1 Hour (1 hour = 3600 seconds)
-        
+        time.sleep(3600)    #Loop For 1 Hour (1 hour = 3600 seconds)            
+                
+                
+
+
+    
+    
